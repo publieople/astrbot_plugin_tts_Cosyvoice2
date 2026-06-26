@@ -2,7 +2,7 @@
     "if_remove_think_tag": {
         "description": "是否去除<think></think>",
         "type": "bool",
-        "hint": "因为deepseek-r1模型及其衍生模型会以<think>.....</think>的形式输出思考过程，会影响语音合成，如果不是使用deepseek-r1模型及其衍生模型则可忽略",
+        "hint": "因为deepseek-r1模型及其衍生模型会以<think>.....</think>的形式输出思考过程，会影响语音合成",
         "obvious_hint": true
     },
     "if_reduce_parenthesis": {
@@ -14,25 +14,16 @@
         "description": "是否去除句子里的表情(emoji)",
         "type": "bool"
     },
-    "if_trt": {
-        "description": "是否使用TensorRT加速",
-        "type": "bool",
-        "hint": "需要下载tensorrt库"
-    },
     "if_fp16": {
         "description": "是否使用fp16精度减少占用",
         "type": "bool",
         "hint": "降低精度可能会影响生成质量，酌情开启"
     },
-    "if_jit": {
-        "description": "是否使用jit",
-        "type": "bool",
-        "hint": "所以这是什么？即时编译？"
-    },
     "if_preload": {
         "description": "是否预加载模型",
         "type": "bool",
-        "hint": "快速加载及debug时不建议开启，但若要使用function_call则要开启"
+        "hint": "建议开启，使function_call等更快响应",
+        "default": true
     },
     "generate_method": {
         "description": "生成模式选择",
@@ -42,26 +33,26 @@
         "default": "instruct2"
     },
     "misc":{
-        "description": "配置",
+        "description": "音源配置",
         "type": "object",
         "items": {
             "source_prompt":{
-                "description": "源音频文件",
+                "description": "源音频文件（sounds目录下）",
                 "type": "string",
-                "hint": "源语音",
-                "default": "prompt_明.wav"
+                "hint": "要克隆的角色音频文件名",
+                "default": ""
             },
             "zero_shot_text":{
                 "description": "zero_shot文本",
                 "type": "string",
-                "hint": "zero_shot供源语音中的文字内容，用以生成准确语音，文字内容越准确越好",
+                "hint": "zero_shot模式下源音频中的文字内容，越准确越好。instruct2模式不需要",
                 "obvious_hint": true,
-                "default": "相信我吧，我会带你们走向光明"
+                "default": ""
             },
             "instruct_speech_dialect":{
-                "description": "instrut生成语音语言形式",
+                "description": "合成语音语言/方言",
                 "type": "string",
-                "hint": "就是用什么话说出来，目前已测：四川话、广东话、普通话",
+                "hint": "用什么话说出来：普通话、四川话、广东话、日语等",
                 "obvious_hint": true,
                 "default": "普通话"
             }
@@ -72,16 +63,16 @@
         "type": "object",
         "items": {
             "server_ip":{
-                "description": "服务器地址",
+                "description": "CoyVoice2 服务地址",
                 "type": "string",
-                "hint": "若为本机使用则不需要更改,即127.0.0.1",
+                "hint": "本机使用 127.0.0.1",
                 "default": "127.0.0.1"
             },
             "if_seperate_serve": {
-                "description": "是否使用分布式部署",
+                "description": "使用独立部署的 CosyVoice2 服务",
                 "type": "bool",
-                "hint": "开启此选项后，本插件就不会自己启动service.py了，且按照服务器地址去访问api",
-                "default": false
+                "hint": "开启后插件不启动本地模型，通过 API 连接外部 CosyVoice2 服务",
+                "default": true
             }
         }
     }

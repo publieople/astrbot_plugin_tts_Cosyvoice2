@@ -1,7 +1,5 @@
 name: astrbot_plugin_tts_Cosyvoice2
-desc: 用于使用Cosyvoice2进行文字转语音。 
-help: 与官方tts方法一致，配置时用openai_tts_api，api填入127.0.0.1:5050，key随意，详情见repo
-version: v1.1.1
-author: xiewoc 
-repo: https://github.com/xiewoc/astrbot_plugin_tts_Cosyvoice2
-
+desc: 基于 CosyVoice2-0.5B 的 TTS 语音合成插件。专为 AstrBot 设计，支持语音合成、多方言、多角色。需配合单独的 CosyVoice2 服务使用。
+version: 1.1.2
+author: xiewoc, publieople
+repo: https://github.com/publieople/astrbot_plugin_tts_Cosyvoice2

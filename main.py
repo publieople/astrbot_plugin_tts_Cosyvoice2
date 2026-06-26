@@ -323,8 +323,12 @@ class SubProcesControl():
             os.remove(lock_file_path)
 
     def child_process_function(self):
-        from .service import run_service
-        run_service()
+        try:
+            from .service import run_service
+            run_service()
+        except ImportError:
+            logger.error("service.py not found — 请使用分布式部署模式 (if_seperate_serve: true)")
+            raise
 
     def start_child_process(self):
 
